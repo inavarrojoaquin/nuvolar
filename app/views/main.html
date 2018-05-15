@@ -1,0 +1,38 @@
+<!-- Main container -->
+<div class="container">
+  <!-- Search bar and list container -->
+  <div class="main-container">
+    <!-- Search bar input -->
+    <div class="row">
+      <div class="col-xs-12">
+        <h1 class="text-center">Nuvolar!</h1>
+      </div>
+      <div class="col-xs-12">
+        <div class="input-group">
+          <input  type="text" class="form-control" placeholder="Type in a github username"
+              ng-change="searchVm.searchUser()" ng-model="searchVm.username">
+          <button class="btn" type="button" ng-click="searchVm.searchUser()">Search</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results list -->
+      <div class="row container-list" ng-if="searchVm.users.length > 0">
+        <div class="col-xs-12">
+          <ul>
+            <li ng-repeat="user in searchVm.users | limitTo:10">
+              <img ng-src="{{user.avatar_url}}" width="50" height="50">
+              <a href="" ng-click="searchVm.userDetails(user)">{{user.login}}</a>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Footer section -->
+  <footer class="row">
+    <div class="col-xs-12">
+      <p class="text-center">©Nuvolar 2018!</p>
+    </div>
+  </footer>
+</div>
