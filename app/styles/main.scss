@@ -8,10 +8,6 @@
   padding: 0.2em 0;
 }
 
-body {
-  padding: 0;
-}
-
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
@@ -88,14 +84,63 @@ body {
   }
 }
 
-/* Responsive: Portrait tablets and up */
+/* Non auto generated styles starts here */
+
+body {
+  padding: 0;
+  background-color: aliceblue;
+}
+
+/* Responsive: Portrait small devices */
 @media screen and (max-width: 576px) {
   .back-button {
     margin-bottom: 15px;
   }
 }
 
+$nuvolar-font: 'Just Another Hand', cursive;
 
 .nuvolar-font {
-  font-family: 'Just Another Hand', cursive;
+  font-family: $nuvolar-font;
+}
+
+.container {
+  min-height: 100%;
+  position: relative;
+}
+
+.main-body {
+  padding-bottom: 30px;
+}
+
+.span-user-name {
+  padding-left: 15px;
+}
+
+.user-details {
+  margin-top: 20px;
+}
+
+@mixin theme($name, $color) {
+  .#{$name} {
+    background-color: $color;
+  }
+}
+
+$themes: (
+  theme-antique: antiquewhite,
+  theme-dark: darkgray,
+  theme-darksalmon: darksalmon  
+) !default;
+
+@each $theme, $color in $themes {
+  @include theme($theme, $color);
+}
+
+.themes {
+  margin-top: 5px;
+}
+
+.back-button {
+    margin-bottom: 15px;
 }

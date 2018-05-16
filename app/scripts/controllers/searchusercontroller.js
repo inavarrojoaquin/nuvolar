@@ -6,6 +6,8 @@
  * @description
  * # SearchusercontrollerCtrl
  * Controller of the nuvolarwebApp
+ * 
+ * It is responsible for search users calling the factory 
  */
 
 angular
@@ -19,7 +21,10 @@ function SearchUsersController(SearchUserFactory, $location) {
     searchVm.users = [];
     searchVm.searchUser = searchUser;
     searchVm.userDetails = userDetails;
+    searchVm.changeTheme = changeTheme;
+    searchVm.username = '';
 
+    // This function call the factory to get all the users that match with "username"
     function searchUser() {
         SearchUserFactory.getUsers(searchVm.username)
           .then(function(data) {
@@ -27,7 +32,12 @@ function SearchUsersController(SearchUserFactory, $location) {
           });
     };
 
-   function userDetails(user) {
-      $location.path('/details/' + user.login);
-   };
+    // Navigates to details user page
+    function userDetails(user) {
+       $location.path('/details/' + user.login);
+    };
+
+    function changeTheme(colorName) {
+      $(document.body).removeClass().toggleClass("theme-"+colorName);
+    };
 }

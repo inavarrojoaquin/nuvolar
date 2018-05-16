@@ -1,38 +1,35 @@
-<!-- Main container -->
-<div class="container">
-  <!-- Search bar and list container -->
-  <div class="main-container">
-    <!-- Search bar input -->
-    <div class="row">
-      <div class="col-xs-12">
-        <h1 class="text-center">Nuvolar!</h1>
-      </div>
-      <div class="col-xs-12">
-        <div class="input-group">
-          <input  type="text" class="form-control" placeholder="Type in a github username"
-              ng-change="searchVm.searchUser()" ng-model="searchVm.username">
-          <button class="btn" type="button" ng-click="searchVm.searchUser()">Search</button>
-        </div>
-      </div>
-    </div>
+<!-- Buttons themes -->
+<div class="row themes">
+  <div class="col-xs-12 text-center">
+    <button class="btn btn-default theme-default" type="button" data-theme="default"  ng-click="searchUser.changeTheme('default')">Default</button>
+    <button class="btn btn-default theme-dark" type="button" data-theme="dark"     ng-click="searchUser.changeTheme('dark')">Dark</button>
+    <button class="btn btn-default theme-antique" type="button" data-theme="antique"  ng-click="searchUser.changeTheme('antique')">Antique</button>
+    <button class="btn btn-default theme-darksalmon" type="button" data-theme="darksalmon"    ng-click="searchUser.changeTheme('darksalmon')">Darksalmon</button>
+  </div>
+</div>
 
-    <!-- Results list -->
-      <div class="row container-list" ng-if="searchVm.users.length > 0">
-        <div class="col-xs-12">
-          <ul>
-            <li ng-repeat="user in searchVm.users | limitTo:10">
-              <img ng-src="{{user.avatar_url}}" width="50" height="50">
-              <a href="" ng-click="searchVm.userDetails(user)">{{user.login}}</a>
-            </li>
-          </ul>
-      </div>
+<!-- Search input bar -->
+<div class="row">
+  <div class="col-xs-12">
+    <h1 id="title" class="text-center nuvolar-font">Nuvolar Search Engine</h1>
+    <div class="input-group">
+        <input class="form-control" ng-change="searchUser.searchUser()"
+               placeholder="Type in a github username" ng-model="searchUser.username">
+        <div class="input-group-addon" ><i class="fa fa-search"></i></div>
     </div>
   </div>
-  
-  <!-- Footer section -->
-  <footer class="row">
-    <div class="col-xs-12">
-      <p class="text-center">©Nuvolar 2018!</p>
+</div>
+
+<BR>
+
+<!-- Results list -->
+<div class="row" ng-show="searchUser.users.length > 0 && searchUser.username != '' ">
+  <div class="col-xs-12">
+    <div class="list-group">
+       <a class="list-group-item list-group-item-action" ng-repeat="user in searchUser.users | limitTo:10"  href="" ng-click="searchUser.userDetails(user)">   
+        <img ng-src="{{user.avatar_url}}" width="50" height="50" class="img-circle" > 
+        <span class="span-user-name" >{{user.login}}</span>
+       </a>
     </div>
-  </footer>
+  </div>
 </div>

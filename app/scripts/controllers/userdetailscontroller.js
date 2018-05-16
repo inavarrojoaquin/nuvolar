@@ -6,6 +6,8 @@
  * @description
  * # UserdetailscontrollerCtrl
  * Controller of the nuvolarwebApp
+ * 
+ * Here all the details user are ready to use by the respective view
  */
 
 angular
@@ -16,13 +18,14 @@ UserDetailsController.$inject = ['$location', 'user', 'repositories', 'followers
 
 function UserDetailsController($location, user, repositories, followers, followings) {
 
-      var userVm = this;
-      userVm.user = user;
-      userVm.repositories = repositories;
-      userVm.followers = followers;
-      userVm.followings = followings;
-      userVm.back = back;
+      var userDetails = this;
+      userDetails.user = user;
+      userDetails.repositories = repositories;
+      userDetails.followers = followers;
+      userDetails.followings = followings;
+      userDetails.back = back;
       
+      // Nativates to the main page
       function back() {
         $location.path('/');
       };

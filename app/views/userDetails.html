@@ -1,59 +1,65 @@
-<div class="row" style="margin-top: 20px;">
+<div class="row user-details">
 	<div class="col-xs-12 col-md-4">
 		<div class="card">
-		  <img class="card-img-top img-thumbnail" ng-src="{{userDetails.user.avatar_url}}" alt="User image">
-		  <div class="card-body">
-		    <h4 class="card-title">{{userDetails.user.name}}</h5>
-		    <p class="card-text">{{userDetails.user.login}}</p>
-		  </div>
+			<img class="card-img-top img-thumbnail" ng-src="{{userDetails.user.avatar_url}}" alt="User image">
+			<div class="card-body">
+				<h4 class="card-title" id="name">{{userDetails.user.name}}</h4>
+				<p class="card-text" id="username">{{userDetails.user.login}}</p>
+			</div>
 		</div>
 		
 		<hr>
 		
-		<p ng-if="userDetails.user.location != null" class="card-text"><i class="fa fa-map-marker"></i><small> {{userDetails.user.location}}</small></p>
-		<p ng-if="userDetails.user.email != null" class="card-text"><i class="fa fa-envelope"></i> {{userDetails.user.email}}</p>
-	
+		<p ng-if="userDetails.user.location != null" class="card-text" id="location"><i class="fa fa-map-marker"></i><small> {{userDetails.user.location}}</small></p>
+		<p ng-if="userDetails.user.email != null" class="card-text" id="email"><i class="fa fa-envelope"></i> {{userDetails.user.email}}</p>
+
 		<button type="button" class="btn btn-info back-button" ng-click="userDetails.back()">Back</button>
 	</div>
-	<div class="col-xs-12 col-md-8" ng-init="selectedTab = 1;">
-
-		<ul class="nav nav-tabs  nav-justified" id="myTab" role="tablist">
-		  <li class="nav-item" ng-class="{active: selectedTab == 1, disabled: userDetails.user.public_repos == 0} ">
-		    <a class="nav-link btn-info" ng-click="selectedTab = 1;">Repositories <span class="badge badge-secondary">{{userDetails.user.public_repos}}</span></a>
-		  </li>
-		  <li class="nav-item" ng-class="{active: selectedTab == 2, disabled: userDetails.user.followers == 0}">
-		    <a class="nav-link btn-info" ng-click="selectedTab = 2;">Followers <span class="badge badge-secondary">{{userDetails.user.followers}}</span></a>
-		  </li>
-		  <li class="nav-item" ng-class="{active: selectedTab == 3, disabled: userDetails.user.following == 0}">
-		    <a class="nav-link btn-info" ng-click="selectedTab = 3;">Followings <span class="badge badge-secondary">{{userDetails.user.following}}</span></a>
-		  </li>
+	<div class="col-xs-12 col-md-8" ng-init="selectedTab = 1;" role="navigation" >
+		
+		<ul class="nav nav-tabs flex-column flex-sm-row nav-justified" role="tablist">
+			<li class="nav-item" ng-class="{active: selectedTab == 1}">
+				<a  class="flex-sm-fill text-sm-center nav-item nav-link" ng-click="selectedTab = 1" ng-class="{disabled: userDetails.user.public_repos == 0}">
+					Repositories <span class="badge badge-secondary">{{userDetails.user.public_repos}}</span>
+				</a>
+			</li>
+			<li class="nav-item" ng-class="{active: selectedTab == 2}">
+				<a  class="flex-sm-fill text-sm-center nav-item nav-link" ng-click="selectedTab = 2" ng-class="{disabled: userDetails.user.followers == 0}">
+					Followers <span class="badge badge-secondary">{{userDetails.user.followers}}</span>
+				</a>
+			</li>
+			<li class="nav-item" ng-class="{active: selectedTab == 3}">
+				<a class="flex-sm-fill text-sm-center nav-item nav-link" ng-click="selectedTab = 3" ng-class="{disabled: userDetails.user.following == 0}">
+					Followings <span class="badge badge-secondary">{{userDetails.user.following}}</span>
+				</a>
+			</li>
 		</ul>
 		
 		<div class="tab-pane" ng-show="selectedTab == 1">
-				<ul  class="list-group" ng-if="userDetails.user.public_repos > 0">
-					<li class="list-group-item"  ng-repeat="repo in userDetails.repositories">
-						<a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a>
-						<span>{{repo.language}}</span>
-					</li>
-				</ul>
+			<ul  class="list-group" ng-if="userDetails.user.public_repos > 0">
+				<li class="list-group-item"  ng-repeat="repo in userDetails.repositories">
+					<a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a>
+					<span>{{repo.language}}</span>
+				</li>
+			</ul>
 		</div>
 		<div class="tab-pane" ng-show="selectedTab == 2">
-		  	<ul  class="list-group" ng-if="userDetails.user.followers > 0">
-		  		<li class="list-group-item" ng-repeat="follower in userDetails.followers">
-		  			<img class="img-thumbnail" ng-src="{{follower.avatar_url}}" width="50" height="50">
-		  			<a ng-href="{{follower.html_url}}" target="_blank">{{follower.login}}</a>
-		  			<label>{{follower.location}}</label>
-		  		</li>
-		  	</ul>
+			<ul  class="list-group" ng-if="userDetails.user.followers > 0">
+				<li class="list-group-item" ng-repeat="follower in userDetails.followers">
+					<img class="img-thumbnail" ng-src="{{follower.avatar_url}}" width="50" height="50">
+					<a ng-href="{{follower.html_url}}" target="_blank">{{follower.login}}</a>
+					<label>{{follower.location}}</label>
+				</li>
+			</ul>
 		</div>
-			<div class="tab-pane" ng-show="selectedTab == 3">
-		  	<ul  class="list-group"ng-if="userDetails.user.following > 0">
-		  		<li class="list-group-item"  ng-repeat="following in userDetails.followings">
-		  			<img class="img-thumbnail"ng-src="{{following.avatar_url}}" width="50" height="50">
-		  			<a ng-href="{{following.html_url}}" target="_blank">{{following.login}}</a>
-		  			<label>{{following.location}}</label>
-		  		</li>
-		  	</ul>
+		<div class="tab-pane" ng-show="selectedTab == 3">
+			<ul  class="list-group"ng-if="userDetails.user.following > 0">
+				<li class="list-group-item"  ng-repeat="following in userDetails.followings">
+					<img class="img-thumbnail"ng-src="{{following.avatar_url}}" width="50" height="50">
+					<a ng-href="{{following.html_url}}" target="_blank">{{following.login}}</a>
+					<label>{{following.location}}</label>
+				</li>
+			</ul>
 		</div>
 		
 	</div>

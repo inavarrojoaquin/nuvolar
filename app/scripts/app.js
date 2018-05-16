@@ -7,6 +7,7 @@
  * # nuvolarwebApp
  *
  * Main module of the application.
+ * Here the app module name is declared and the router is configured to manage the url path
  */
 angular
   .module('nuvolarwebApp', [
@@ -15,7 +16,7 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
        .when('/index', {
-        templateUrl:'views/searchUsers.html',
+        templateUrl:'views/main.html',
         controller:'SearchUsersController',
         controllerAs: 'searchUser'
       })
@@ -35,23 +36,23 @@ angular
       });
 
 
-      function getUser(SearchUserFactory, $route) {
-    var username = $route.current.params.username;
-    return SearchUserFactory.getUser(username);;
+    function getUser(SearchUserFactory, $route) {
+      var username = $route.current.params.username;
+      return SearchUserFactory.getUser(username);;
     };
 
     function getRepositories(SearchUserFactory, $route) {
-        var username = $route.current.params.username;
-        return SearchUserFactory.getRepositories(username);
+      var username = $route.current.params.username;
+      return SearchUserFactory.getRepositories(username);
     };
 
     function getFollowers(SearchUserFactory, $route) {
-        var username = $route.current.params.username;
-        return SearchUserFactory.getFollowers(username);
+      var username = $route.current.params.username;
+      return SearchUserFactory.getFollowers(username);
     };
 
     function getFollowings(SearchUserFactory, $route) {
-        var username = $route.current.params.username;
-        return SearchUserFactory.getFollowings(username);
+      var username = $route.current.params.username;
+      return SearchUserFactory.getFollowings(username);
     };
   });

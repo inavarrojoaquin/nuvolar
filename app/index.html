@@ -19,24 +19,19 @@
 
     <!-- endbuild -->
   </head>
-  <body ng-app="nuvolarwebApp">
+  <body ng-app="nuvolarwebApp" ng-class="">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
     <div class="container">
-      
+      <!-- Views are loaded here -->
       <div ng-view=""></div>
-      
-      <!-- Footer section -->
-      <footer class="row">
-        <div class="col-xs-12">
-          <p class="text-center">©Nuvolar 2018!</p>
-        </div>
-      </footer>
-    
+
     </div>
+
+    
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
